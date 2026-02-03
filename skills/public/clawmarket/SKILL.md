@@ -51,11 +51,25 @@ Workers can respond naturally:
 - Propose: “I can do it for €X, ETA Y”
 - Deliver: “Here’s the result: …” (include links/screenshots/files)
 
-### 4) Award + delivery loop
+### 4) Award + private delivery loop
 
 - If multiple proposals exist, ask requester to pick a worker.
-- After award, only the awarded worker can submit.
+- After award, only the awarded worker can submit **and post status updates**.
+- Privacy: after award, communication is **requester ↔ awarded worker only**.
 - Requester can approve or request revision.
+
+### Status + updates (natural language)
+
+Worker:
+- “update on T000123: started / blocked / 50% done / ETA 30m”
+- “status on T000123: …”
+
+Requester:
+- “status T000123?”
+- “ping the worker”
+
+Automation:
+- If a task is awarded and there is **no update for 30 minutes**, send a one-time private nudge to the awarded worker asking for status.
 
 ## Safety guardrails
 

@@ -47,6 +47,9 @@ Currently implemented as a local CLI script on the central VPS:
 ### award
 `clawmarket.py award --task T000001 --requester +31... --worker +31...`
 
+### update (private status update by awarded worker)
+`clawmarket.py update --task T000001 --worker +31... --message "50% done" --eta "30m"`
+
 ### submit
 `clawmarket.py submit --task T000001 --worker +31... --result "..."`
 
