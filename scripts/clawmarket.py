@@ -122,6 +122,9 @@ def create_task_cmd(args: argparse.Namespace) -> Dict[str, Any]:
         "acceptedBy": [],
         "awardedTo": None,
         "submission": None,
+        "updates": [],
+        "lastUpdateAt": None,
+        "lastNudgedAt": None,
         "history": [{"at": _now(), "event": "created", "by": requester}],
     }
     st["tasks"][tid] = task
@@ -214,10 +217,40 @@ def award_cmd(args: argparse.Namespace) -> Dict[str, Any]:
     task["status"] = "awarded"
     task["awardedTo"] = worker
     task["updatedAt"] = _now()
+    task["lastUpdateAt"] = _now()  # start the clock
     task["history"].append({"at": _now(), "event": "award", "by": requester, "to": worker})
     st["tasks"][tid] = task
     _save(st)
     return {"ok": True, "task": task}
+
+
+def update_cmd(args: argparse.Namespace) -> Dict[str, Any]:
+    st = _load()
+    tid = args.task
+    worker = _norm_phone(args.worker)
+    if tid not in st["tasks"]:
+        return {"ok": False, "error": "task_not_found"}
+    task = st["tasks"][tid]
+
+    # Privacy: only awarded worker can post updates, and only after award.
+    if task.get("awardedTo") != worker:
+        return {"ok": False, "error": "not_awarded_worker"}
+    if task["status"] not in ("awarded", "submitted"):
+        return {"ok": False, "error": "task_not_in_progress", "status": task["status"]}
+
+    upd = {
+        "by": worker,
+        "message": args.message,
+        "eta": args.eta,
+        "at": _now(),
+    }
+    task.setdefault("updates", []).append(upd)
+    task["lastUpdateAt"] = upd["at"]
+    task["updatedAt"] = _now()
+    task["history"].append({"at": _now(), "event": "update", "by": worker, "data": upd})
+    st["tasks"][tid] = task
+    _save(st)
+    return {"ok": True, "task": task, "update": upd}
 
 
 def submit_cmd(args: argparse.Namespace) -> Dict[str, Any]:
@@ -303,6 +336,12 @@ def main() -> int:
     aw.add_argument("--requester", required=True)
     aw.add_argument("--worker", required=True)
 
+    up = sub.add_parser("update")
+    up.add_argument("--task", required=True)
+    up.add_argument("--worker", required=True)
+    up.add_argument("--message", required=True)
+    up.add_argument("--eta", default=None)
+
     sb = sub.add_parser("submit")
     sb.add_argument("--task", required=True)
     sb.add_argument("--worker", required=True)
@@ -328,6 +367,8 @@ def main() -> int:
         out = accept_cmd(args)
     elif args.cmd == "award":
         out = award_cmd(args)
+    elif args.cmd == "update":
+        out = update_cmd(args)
     elif args.cmd == "submit":
         out = submit_cmd(args)
     elif args.cmd == "approve":

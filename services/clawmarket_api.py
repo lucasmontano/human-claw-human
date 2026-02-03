@@ -65,6 +65,13 @@ class AwardIn(BaseModel):
     worker: str
 
 
+class UpdateIn(BaseModel):
+    task: str
+    worker: str
+    message: str
+    eta: Optional[str] = None
+
+
 class SubmitIn(BaseModel):
     task: str
     worker: str
@@ -142,11 +149,27 @@ def open_tasks(limit: int = 50):
 
 
 @app.get("/tasks/{task_id}")
-def get_task(task_id: str):
+def get_task(task_id: str, viewer: Optional[str] = None):
+    """Return a task.
+
+    Privacy: if `viewer` is provided and is not the requester or the awarded worker,
+    redact private fields once the task is awarded.
+    """
     st = _state()
     t = st.get("tasks", {}).get(task_id)
     if not t:
         raise HTTPException(status_code=404, detail="task_not_found")
+
+    if viewer:
+        v = cm._norm_phone(viewer)  # noqa
+        is_requester = v == t.get("requester")
+        is_awarded = v == t.get("awardedTo")
+        if t.get("status") in ("awarded", "submitted", "approved") and not (is_requester or is_awarded):
+            redacted = dict(t)
+            for k in ("requester", "awardedTo", "submission", "updates", "proposals", "acceptedBy"):
+                redacted.pop(k, None)
+            return {"ok": True, "task": redacted, "redacted": True}
+
     return {"ok": True, "task": t}
 
 
@@ -192,6 +215,17 @@ def award(inp: AwardIn):
         worker = inp.worker
 
     return cm.award_cmd(A())
+
+
+@app.post("/tasks/update")
+def update(inp: UpdateIn):
+    class A:
+        task = inp.task
+        worker = inp.worker
+        message = inp.message
+        eta = inp.eta
+
+    return cm.update_cmd(A())
 
 
 @app.post("/tasks/submit")
