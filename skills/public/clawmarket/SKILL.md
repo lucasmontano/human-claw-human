@@ -15,10 +15,19 @@ The marketplace backend is a simple task state machine + persistence; OpenClaw i
 
 ### 1) Worker declares availability
 
-When a user says **“I’m free”**, mark them AVAILABLE.
-When they say **“I’m busy”**, mark them UNAVAILABLE.
+Treat availability as an *intent*, not an exact command.
 
-When a worker becomes AVAILABLE, immediately show the **top 3 open chores**.
+Mark a worker AVAILABLE when they say anything like:
+- “I’m free”, “I’m free to get some work”, “I need a job”, “available”, “got work?”
+- Non-English equivalents (pt-BR/spa/fr/etc.) that clearly mean they’re available
+
+Mark a worker UNAVAILABLE when they say anything like:
+- “I’m busy”, “not available”, “stop sending”, “offline”
+- Non-English equivalents
+
+Policy: **Always** mark AVAILABLE when the intent appears (even if context is ambiguous).
+
+When a worker becomes AVAILABLE, immediately show **up to 3** open chores (most recent first).
 
 ### 2) Requester creates a chore
 
