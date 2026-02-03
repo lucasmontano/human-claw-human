@@ -245,3 +245,45 @@ def approve(inp: ApproveIn):
         requester = inp.requester
 
     return cm.approve_cmd(A())
+
+
+@app.get("/admin/needs-nudge")
+def needs_nudge(silenceSeconds: int = 1800, limit: int = 50):
+    """Return awarded tasks with no update for >silenceSeconds and not yet nudged."""
+    st = _state()
+    now = int(time.time())
+    out = []
+    for t in st.get("tasks", {}).values():
+        if t.get("status") != "awarded":
+            continue
+        last = t.get("lastUpdateAt") or t.get("updatedAt") or t.get("createdAt")
+        if not last:
+            continue
+        if now - int(last) <= int(silenceSeconds):
+            continue
+        if t.get("lastNudgedAt"):
+            # one-time auto nudge
+            continue
+        worker = t.get("awardedTo")
+        requester = t.get("requester")
+        if not worker or not requester:
+            continue
+        out.append({"task": t.get("id"), "worker": worker, "requester": requester})
+    return {"ok": True, "tasks": out[:limit]}
+
+
+class MarkNudgedIn(BaseModel):
+    task: str
+
+
+@app.post("/admin/mark-nudged")
+def mark_nudged(inp: MarkNudgedIn):
+    st = _state()
+    t = st.get("tasks", {}).get(inp.task)
+    if not t:
+        raise HTTPException(status_code=404, detail="task_not_found")
+    t["lastNudgedAt"] = int(time.time())
+    t["updatedAt"] = int(time.time())
+    st["tasks"][inp.task] = t
+    _save(st)
+    return {"ok": True, "task": inp.task, "lastNudgedAt": t["lastNudgedAt"]}
