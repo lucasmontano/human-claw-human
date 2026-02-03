@@ -1,0 +1,9 @@
+{
+  "name": "human-claw-human",
+  "version": "0.0.1",
+  "private": false,
+  "type": "module",
+  "bin": {
+    "clawmarket-install": "bin/clawmarket-install.js"
+  }
+}
