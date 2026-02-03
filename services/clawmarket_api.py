@@ -142,9 +142,15 @@ def set_availability(inp: AvailabilityIn):
 
 
 @app.get("/tasks/open")
-def open_tasks(limit: int = 50):
+def open_tasks(limit: int = 50, viewer: Optional[str] = None):
     out = cm.open_tasks_cmd(None)  # type: ignore
     tasks = out.get("tasks", [])
+
+    if viewer:
+        v = cm._norm_phone(viewer)  # noqa
+        # Do not show the viewer their own requested tasks when browsing as a worker.
+        tasks = [t for t in tasks if t.get("requester") != v]
+
     return {"ok": True, "tasks": tasks[:limit]}
 
 
