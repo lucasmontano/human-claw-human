@@ -1,10 +1,9 @@
 ---
-name: clawmarket
+name: human-claw
 description: "OpenClaw-integrated human-in-the-loop chore marketplace with no public UI. Use when you need to route a task from one OpenClaw user/agent to another human worker (availability keywords: I'm free / I'm busy), collect accepts or proposals, award work, and return results via chat."
 ---
 
-# Clawmarket
-
+# Human Claw
 ## Overview
 
 Clawmarket is a central, OpenClaw-mediated task marketplace: requesters create chores via chat, available workers receive offers via chat, and results come back via chat.

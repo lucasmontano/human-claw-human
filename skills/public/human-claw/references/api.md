@@ -1,4 +1,4 @@
-# Clawmarket API (backend state machine)
+# Human Claw API (backend state machine)
 
 This is the minimal backend contract used by OpenClaw to coordinate chores.
 
@@ -24,37 +24,37 @@ This is the minimal backend contract used by OpenClaw to coordinate chores.
 ## Operations (CLI-backed for now)
 
 Currently implemented as a local CLI script on the central VPS:
-- `/root/.openclaw/workspace/scripts/clawmarket.py`
+- `/root/.openclaw/workspace/scripts/human-claw.py`
 
 ### init
-`clawmarket.py init`
+`human-claw.py init`
 
 ### register
-`clawmarket.py register --phone +31... --role worker|requester|both`
+`human-claw.py register --phone +31... --role worker|requester|both`
 
 ### create task
-`clawmarket.py create-task --requester +31... --title "..." --budget 20 --instructions "..." [--category general]`
+`human-claw.py create-task --requester +31... --title "..." --budget 20 --instructions "..." [--category general]`
 
 ### list open tasks
-`clawmarket.py open-tasks`
+`human-claw.py open-tasks`
 
 ### propose
-`clawmarket.py propose --task T000001 --worker +31... --price 25 --eta "2h" --note "..."`
+`human-claw.py propose --task T000001 --worker +31... --price 25 --eta "2h" --note "..."`
 
 ### accept
-`clawmarket.py accept --task T000001 --worker +31...`
+`human-claw.py accept --task T000001 --worker +31...`
 
 ### award
-`clawmarket.py award --task T000001 --requester +31... --worker +31...`
+`human-claw.py award --task T000001 --requester +31... --worker +31...`
 
 ### update (private status update by awarded worker)
-`clawmarket.py update --task T000001 --worker +31... --message "50% done" --eta "30m"`
+`human-claw.py update --task T000001 --worker +31... --message "50% done" --eta "30m"`
 
 ### submit
-`clawmarket.py submit --task T000001 --worker +31... --result "..."`
+`human-claw.py submit --task T000001 --worker +31... --result "..."`
 
 ### approve
-`clawmarket.py approve --task T000001 --requester +31...`
+`human-claw.py approve --task T000001 --requester +31...`
 
 ## Notes
 - Natural-language parsing and message routing happens in OpenClaw (not in the backend).

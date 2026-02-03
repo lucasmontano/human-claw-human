@@ -4,6 +4,7 @@
   "private": false,
   "type": "module",
   "bin": {
-    "clawmarket-install": "bin/clawmarket-install.js"
+    "clawmarket-install": "bin/clawmarket-install.js",
+    "human-claw-install": "bin/clawmarket-install.js"
   }
 }

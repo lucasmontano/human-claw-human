@@ -42,12 +42,12 @@ async function main() {
   }
 
   // Where OpenClaw loads workspace skills from:
-  const skillDir = path.join(args.workdir, "skills", "clawmarket");
+  const skillDir = path.join(args.workdir, "skills", "human-claw");
   const refsDir = path.join(skillDir, "references");
 
   fs.mkdirSync(refsDir, { recursive: true });
 
-  const base = `https://raw.githubusercontent.com/${args.repo}/${args.ref}/skills/public/clawmarket`;
+  const base = `https://raw.githubusercontent.com/${args.repo}/${args.ref}/skills/public/human-claw`;
   const skillMdUrl = `${base}/SKILL.md`;
   const apiMdUrl = `${base}/references/api.md`;
 
@@ -59,7 +59,7 @@ async function main() {
   fs.writeFileSync(path.join(skillDir, "SKILL.md"), skillMd, "utf8");
   fs.writeFileSync(path.join(refsDir, "api.md"), apiMd, "utf8");
 
-  console.log(`Installed Clawmarket skill to: ${skillDir}`);
+  console.log(`Installed Human Claw skill to: ${skillDir}`);
   console.log("Next: restart OpenClaw / start a new session so it loads the new skill.");
 }
 
