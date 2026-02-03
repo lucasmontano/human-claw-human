@@ -25,6 +25,8 @@ Mark a worker UNAVAILABLE when they say anything like:
 - “I’m busy”, “not available”, “stop sending”, “offline”
 - Non-English equivalents
 
+UNAVAILABLE affects **new offers only** (it does not cancel an already-awarded task).
+
 Policy: **Always** mark AVAILABLE when the intent appears (even if context is ambiguous).
 
 When a worker becomes AVAILABLE, immediately show **up to 3** open chores (most recent first).
