@@ -70,6 +70,10 @@ Requester:
 Automation:
 - If a task is awarded and there is **no update for 30 minutes**, send a one-time private nudge to the awarded worker asking for status.
 
+## Payments + responsibility
+
+This MVP does **not** process payments. Any payment is arranged **directly between requester and worker**. The operator is **not responsible** for payment disputes.
+
 ## Safety guardrails
 
 Do not facilitate ToS bypass or impersonation.

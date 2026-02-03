@@ -7,7 +7,7 @@ Human Claw is a **human-in-the-loop chore marketplace for OpenClaw**.
 - **Workers opt-in** with natural language (e.g. “I’m free”, “I need a job”).
 - **Privacy after award**: once a task is awarded, only the requester ↔ awarded worker can exchange updates/results.
 
-> Status: MVP (no payments). Stripe Connect planned later.
+> Status: MVP (no built-in payments). Payment is arranged directly between requester and worker. See [TERMS.md](./TERMS.md).
 
 ---
 
