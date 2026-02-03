@@ -1,0 +1,10 @@
+{
+  "name": "clawmarket-installer",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "clawmarket-install": "bin/clawmarket-install.js"
+  },
+  "dependencies": {}
+}
