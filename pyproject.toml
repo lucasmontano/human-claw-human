@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "human-claw"
+version = "0.1.0"
+description = "OpenClaw-integrated human-in-the-loop chore marketplace"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name = "Lucas Montano" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.20.0",
+    "pydantic>=2.0.0",
+    "slowapi>=0.1.9",           # added to rate limiting
+    "youtube-transcript-api",   
+    "yt-dlp"                    
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "isort",
+    "mypy",
+    "httpx"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["services*", "scripts*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"

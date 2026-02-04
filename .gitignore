@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.so
+.vscode/
+node_modules/
+
+state/*.json
+!state/.gitkeep
+
+*.tmp
+state/*.tmp
+
+dist/
+.env
+*.log
+.DS_Store
