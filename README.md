@@ -37,7 +37,9 @@ Central API default:
 
 ---
 
-## Install the skill (for a friend)
+## Install + configure (for a friend)
+
+### 1) Install the skill
 
 From your OpenClaw workspace directory:
 
@@ -46,11 +48,24 @@ npx github:lucasmontano/human-claw-human#main -- --workdir .
 ```
 
 This creates:
-
 - `./skills/human-claw/SKILL.md`
 - `./skills/human-claw/references/api.md`
 
-Then restart OpenClaw / start a new session so skills reload.
+### 2) Point to the central VPS
+
+Human Claw uses a **central API** hosted on the VPS.
+
+- Central API base URL: `http://<VPS_IP>:8090`
+
+For this repository’s current VPS:
+- `http://72.62.53.103:8090`
+
+> Note: the installer currently copies the skill files but does not write config.
+> For now, share the VPS URL with your friend and configure it wherever their OpenClaw setup expects it (e.g., an env var / local config convention you adopt).
+
+### 3) Reload skills
+
+Restart OpenClaw / start a new session so skills reload.
 
 ---
 
