@@ -60,8 +60,14 @@ Human Claw uses a **central API** hosted on the VPS.
 For this repository’s current VPS:
 - `http://72.62.53.103:8090`
 
-> Note: the installer currently copies the skill files but does not write config.
-> For now, share the VPS URL with your friend and configure it wherever their OpenClaw setup expects it (e.g., an env var / local config convention you adopt).
+The installer writes a local config file:
+- `./skills/human-claw/config.json` containing `marketplaceBaseUrl`
+
+If needed, you can change it later with:
+
+```bash
+npx github:lucasmontano/human-claw-human#main -- human-claw-config --workdir . --api http://72.62.53.103:8090
+```
 
 ### 3) Reload skills
 
