@@ -1,7 +1,341 @@
 {
   "version": 1,
   "createdAt": 1770132989,
-  "users": {},
-  "tasks": {},
-  "seq": 0
+  "users": {
+    "+5511999990000": {
+      "phone": "+5511999990000",
+      "role": "worker",
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "reputation": {
+        "approved": 0,
+        "rejected": 0,
+        "onTime": 0,
+        "late": 0
+      }
+    },
+    "+5511999990001": {
+      "phone": "+5511999990001",
+      "role": "worker",
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "reputation": {
+        "approved": 0,
+        "rejected": 0,
+        "onTime": 0,
+        "late": 0
+      }
+    },
+    "+5511999990002": {
+      "phone": "+5511999990002",
+      "role": "worker",
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "reputation": {
+        "approved": 0,
+        "rejected": 0,
+        "onTime": 0,
+        "late": 0
+      }
+    },
+    "+5511999990003": {
+      "phone": "+5511999990003",
+      "role": "worker",
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "reputation": {
+        "approved": 0,
+        "rejected": 0,
+        "onTime": 0,
+        "late": 0
+      }
+    },
+    "+5511999990004": {
+      "phone": "+5511999990004",
+      "role": "worker",
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "reputation": {
+        "approved": 0,
+        "rejected": 0,
+        "onTime": 0,
+        "late": 0
+      }
+    },
+    "+5500000000": {
+      "phone": "+5500000000",
+      "role": "requester",
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "reputation": {
+        "approved": 0,
+        "rejected": 0,
+        "onTime": 0,
+        "late": 0
+      }
+    }
+  },
+  "tasks": {
+    "T000001": {
+      "id": "T000001",
+      "status": "open",
+      "requester": "+5500000000",
+      "title": "Task 0",
+      "instructions": "Do it",
+      "budget": 10.0,
+      "category": "general",
+      "deadline": null,
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "proposals": [],
+      "acceptedBy": [],
+      "awardedTo": null,
+      "submission": null,
+      "updates": [],
+      "lastUpdateAt": null,
+      "lastNudgedAt": null,
+      "history": [
+        {
+          "at": 1770208137,
+          "event": "created",
+          "by": "+5500000000"
+        }
+      ]
+    },
+    "T000002": {
+      "id": "T000002",
+      "status": "open",
+      "requester": "+5500000000",
+      "title": "Task 1",
+      "instructions": "Do it",
+      "budget": 10.0,
+      "category": "general",
+      "deadline": null,
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "proposals": [],
+      "acceptedBy": [],
+      "awardedTo": null,
+      "submission": null,
+      "updates": [],
+      "lastUpdateAt": null,
+      "lastNudgedAt": null,
+      "history": [
+        {
+          "at": 1770208137,
+          "event": "created",
+          "by": "+5500000000"
+        }
+      ]
+    },
+    "T000003": {
+      "id": "T000003",
+      "status": "open",
+      "requester": "+5500000000",
+      "title": "Task 2",
+      "instructions": "Do it",
+      "budget": 10.0,
+      "category": "general",
+      "deadline": null,
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "proposals": [],
+      "acceptedBy": [],
+      "awardedTo": null,
+      "submission": null,
+      "updates": [],
+      "lastUpdateAt": null,
+      "lastNudgedAt": null,
+      "history": [
+        {
+          "at": 1770208137,
+          "event": "created",
+          "by": "+5500000000"
+        }
+      ]
+    },
+    "T000004": {
+      "id": "T000004",
+      "status": "open",
+      "requester": "+5500000000",
+      "title": "Task 3",
+      "instructions": "Do it",
+      "budget": 10.0,
+      "category": "general",
+      "deadline": null,
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "proposals": [],
+      "acceptedBy": [],
+      "awardedTo": null,
+      "submission": null,
+      "updates": [],
+      "lastUpdateAt": null,
+      "lastNudgedAt": null,
+      "history": [
+        {
+          "at": 1770208137,
+          "event": "created",
+          "by": "+5500000000"
+        }
+      ]
+    },
+    "T000005": {
+      "id": "T000005",
+      "status": "open",
+      "requester": "+5500000000",
+      "title": "Task 4",
+      "instructions": "Do it",
+      "budget": 10.0,
+      "category": "general",
+      "deadline": null,
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "proposals": [],
+      "acceptedBy": [],
+      "awardedTo": null,
+      "submission": null,
+      "updates": [],
+      "lastUpdateAt": null,
+      "lastNudgedAt": null,
+      "history": [
+        {
+          "at": 1770208137,
+          "event": "created",
+          "by": "+5500000000"
+        }
+      ]
+    },
+    "T000006": {
+      "id": "T000006",
+      "status": "open",
+      "requester": "+5500000000",
+      "title": "Task 5",
+      "instructions": "Do it",
+      "budget": 10.0,
+      "category": "general",
+      "deadline": null,
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "proposals": [],
+      "acceptedBy": [],
+      "awardedTo": null,
+      "submission": null,
+      "updates": [],
+      "lastUpdateAt": null,
+      "lastNudgedAt": null,
+      "history": [
+        {
+          "at": 1770208137,
+          "event": "created",
+          "by": "+5500000000"
+        }
+      ]
+    },
+    "T000007": {
+      "id": "T000007",
+      "status": "open",
+      "requester": "+5500000000",
+      "title": "Task 6",
+      "instructions": "Do it",
+      "budget": 10.0,
+      "category": "general",
+      "deadline": null,
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "proposals": [],
+      "acceptedBy": [],
+      "awardedTo": null,
+      "submission": null,
+      "updates": [],
+      "lastUpdateAt": null,
+      "lastNudgedAt": null,
+      "history": [
+        {
+          "at": 1770208137,
+          "event": "created",
+          "by": "+5500000000"
+        }
+      ]
+    },
+    "T000008": {
+      "id": "T000008",
+      "status": "open",
+      "requester": "+5500000000",
+      "title": "Task 7",
+      "instructions": "Do it",
+      "budget": 10.0,
+      "category": "general",
+      "deadline": null,
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "proposals": [],
+      "acceptedBy": [],
+      "awardedTo": null,
+      "submission": null,
+      "updates": [],
+      "lastUpdateAt": null,
+      "lastNudgedAt": null,
+      "history": [
+        {
+          "at": 1770208137,
+          "event": "created",
+          "by": "+5500000000"
+        }
+      ]
+    },
+    "T000009": {
+      "id": "T000009",
+      "status": "open",
+      "requester": "+5500000000",
+      "title": "Task 8",
+      "instructions": "Do it",
+      "budget": 10.0,
+      "category": "general",
+      "deadline": null,
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "proposals": [],
+      "acceptedBy": [],
+      "awardedTo": null,
+      "submission": null,
+      "updates": [],
+      "lastUpdateAt": null,
+      "lastNudgedAt": null,
+      "history": [
+        {
+          "at": 1770208137,
+          "event": "created",
+          "by": "+5500000000"
+        }
+      ]
+    },
+    "T000010": {
+      "id": "T000010",
+      "status": "open",
+      "requester": "+5500000000",
+      "title": "Task 9",
+      "instructions": "Do it",
+      "budget": 10.0,
+      "category": "general",
+      "deadline": null,
+      "createdAt": 1770208137,
+      "updatedAt": 1770208137,
+      "proposals": [],
+      "acceptedBy": [],
+      "awardedTo": null,
+      "submission": null,
+      "updates": [],
+      "lastUpdateAt": null,
+      "lastNudgedAt": null,
+      "history": [
+        {
+          "at": 1770208137,
+          "event": "created",
+          "by": "+5500000000"
+        }
+      ]
+    }
+  },
+  "seq": 10
 }

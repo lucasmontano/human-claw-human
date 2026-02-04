@@ -4,6 +4,9 @@ __pycache__/
 .vscode/
 node_modules/
 
+state/*.json
+!state/.gitkeep
+
 *.tmp
 state/*.tmp
 

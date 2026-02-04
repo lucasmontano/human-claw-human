@@ -8,14 +8,19 @@ Storage: workspace/state/clawmarket.json (same as scripts/clawmarket.py).
 This is intentionally minimal. Add auth/rate limits before going truly public.
 """
 
-from __future__ import annotations
+#from __future__ import annotations
 
 import os
 import time
 from typing import Any, Dict, Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Body, FastAPI, HTTPException, Request
 from pydantic import BaseModel, Field
+
+# add imports for rate limiting
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
 # Reuse the CLI state machine implementation.
 import sys
@@ -24,8 +29,13 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
 import clawmarket as cm  # type: ignore
 
+limiter = Limiter(key_func=get_remote_address)
+
 app = FastAPI(title="ClawMarket API", version="0.1.0")
 
+#connect the limiter to the app.
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 class RegisterIn(BaseModel):
     phone: str
@@ -109,7 +119,8 @@ def status():
 
 
 @app.post("/users/register")
-def register(inp: RegisterIn):
+@limiter.limit("5/minute") # avoid user regitsration spam
+def register(request: Request, inp: RegisterIn = Body(...)):
     class A:  # argparse-like
         phone = inp.phone
         role = inp.role
@@ -180,7 +191,8 @@ def get_task(task_id: str, viewer: Optional[str] = None):
 
 
 @app.post("/tasks")
-def create_task(inp: CreateTaskIn):
+@limiter.limit("10/minute") #avoid task spanm
+def create_task(request: Request, inp: CreateTaskIn = Body(...)):
     class A:
         requester = inp.requester
         title = inp.title
@@ -193,7 +205,8 @@ def create_task(inp: CreateTaskIn):
 
 
 @app.post("/tasks/propose")
-def propose(inp: ProposeIn):
+@limiter.limit("20/minute")
+def propose(request: Request,inp: ProposeIn = Body(...)):
     class A:
         task = inp.task
         worker = inp.worker
