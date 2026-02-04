@@ -5,14 +5,16 @@ import process from "node:process";
 import https from "node:https";
 
 const DEFAULT_REPO = "lucasmontano/human-claw-human";
+const DEFAULT_API = "http://72.62.53.103:8090";
 
 function parseArgs(argv) {
-  const out = { repo: DEFAULT_REPO, ref: "main", workdir: process.cwd() };
+  const out = { repo: DEFAULT_REPO, ref: "main", workdir: process.cwd(), api: DEFAULT_API };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--repo") out.repo = argv[++i];
     else if (a === "--ref") out.ref = argv[++i];
     else if (a === "--workdir") out.workdir = argv[++i];
+    else if (a === "--api") out.api = argv[++i];
     else if (a === "-h" || a === "--help") out.help = true;
   }
   return out;
@@ -59,6 +61,10 @@ async function main() {
 
   fs.writeFileSync(path.join(skillDir, "SKILL.md"), skillMd, "utf8");
   fs.writeFileSync(path.join(refsDir, "api.md"), apiMd, "utf8");
+
+  // Write local skill config
+  const cfg = { marketplaceBaseUrl: args.api };
+  fs.writeFileSync(path.join(skillDir, "config.json"), JSON.stringify(cfg, null, 2) + "\n", "utf8");
 
   console.log(`Installed Human Claw skill to: ${skillDir}`);
   console.log("Next: restart OpenClaw / start a new session so it loads the new skill.");

@@ -5,6 +5,7 @@
   "type": "module",
   "bin": {
     "clawmarket-install": "bin/human-claw-install.js",
-    "human-claw-install": "bin/human-claw-install.js"
+    "human-claw-install": "bin/human-claw-install.js",
+    "human-claw-config": "bin/human-claw-config.js"
   }
 }
